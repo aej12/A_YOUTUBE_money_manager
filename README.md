@@ -1,8 +1,7 @@
-<!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>광고 시청 후 자료 보기</title>
+  <title>A_YOUTUBE_money_manager</title>
   <style>
     body {
       font-family: sans-serif;
@@ -50,9 +49,10 @@
     }
 
     .timer {
-      font-size: 14px;
+      font-size: 15px;
       color: #666;
-      margin-top: -10px;
+      margin-top: -5px;
+      height: 20px;
     }
   </style>
 </head>
@@ -66,56 +66,70 @@
   </div>
 
   <h2>📢 광고를 먼저 봐주세요!</h2>
-  <p>쿠팡 광고를 클릭하면 일정 시간 후 공유자료가 열립니다.</p>
+  <p>쿠팡 광고를 클릭하면 5초 후에 가계부 자료가 열립니다.</p>
 
-  <!-- ✅ 쿠팡 광고 버튼 -->
-  <a id="adLink" href="https://link.coupang.com/a/cGwzg1" target="_blank" rel="noopener noreferrer">
-    <button class="btn ad-button" type="button">✅ 쿠팡 인기 상품 보기</button>
+  <!-- ✅ 쿠팡 광고 버튼 1 -->
+  <a id="adLink1" href="https://link.coupang.com/a/cGwzg1" target="_blank" rel="noopener noreferrer">
+    <button class="btn ad-button" type="button">✅ 쿠팡 인기상품 보기 (1번)</button>
   </a>
+  <div id="timerMsg1" class="timer"></div>
 
-  <!-- 타이머 문구 -->
-  <div id="timerMsg" class="timer"></div>
+  <!-- ✅ 쿠팡 광고 버튼 2 -->
+  <a id="adLink2" href="https://link.coupang.com/a/cGwzg1" target="_blank" rel="noopener noreferrer">
+    <button class="btn ad-button" type="button">✅ 쿠팡 인기상품 보기 (2번)</button>
+  </a>
+  <div id="timerMsg2" class="timer"></div>
 
-  <!-- 공유자료 버튼 1 (1년 가계부) -->
+  <!-- ✅ 공유자료 버튼 1 -->
   <button id="goBtn1" class="btn go-button" disabled>📄 1년 가계부 보기</button>
 
-  <!-- 공유자료 버튼 2 (5년 가계부) -->
+  <!-- ✅ 공유자료 버튼 2 -->
   <button id="goBtn2" class="btn go-button" disabled>📄 5년 가계부 보기</button>
 
   <script>
-    const adLink = document.getElementById("adLink");
+    // 버튼 요소들
+    const adLink1 = document.getElementById("adLink1");
+    const adLink2 = document.getElementById("adLink2");
     const goBtn1 = document.getElementById("goBtn1");
     const goBtn2 = document.getElementById("goBtn2");
-    const timerMsg = document.getElementById("timerMsg");
+    const timerMsg1 = document.getElementById("timerMsg1");
+    const timerMsg2 = document.getElementById("timerMsg2");
 
-    let clickCount = 0; // 쿠팡버튼 클릭횟수 추적
-
-    adLink.addEventListener("click", (event) => {
-      clickCount++;
-
-      // 쿠팡 링크 새 창에서 열기 유지
-      setTimeout(() => {
-        if (clickCount === 1) {
-          timerMsg.textContent = "⏳ 5초 후 ‘1년 가계부 보기’ 버튼이 활성화됩니다...";
-          setTimeout(() => {
-            goBtn1.disabled = false;
-            goBtn1.classList.add("active");
-            timerMsg.textContent = "✅ 1년 가계부 버튼이 활성화되었습니다!";
-          }, 5000);
-        } else if (clickCount === 2) {
-          timerMsg.textContent = "⏳ 5초 후 ‘5년 가계부 보기’ 버튼이 활성화됩니다...";
-          setTimeout(() => {
-            goBtn2.disabled = false;
-            goBtn2.classList.add("active");
-            timerMsg.textContent = "✅ 5년 가계부 버튼이 활성화되었습니다!";
-          }, 5000);
+    // ✅ 1번 쿠팡 버튼 클릭 시
+    adLink1.addEventListener("click", () => {
+      let countdown = 5;
+      timerMsg1.textContent = `⏳ ${countdown}초 후 1년 가계부 버튼이 활성화됩니다.`;
+      const interval = setInterval(() => {
+        countdown--;
+        if (countdown > 0) {
+          timerMsg1.textContent = `⏳ ${countdown}초 후 1년 가계부 버튼이 활성화됩니다.`;
         } else {
-          timerMsg.textContent = "모든 가계부가 이미 활성화되었습니다 ✅";
+          clearInterval(interval);
+          timerMsg1.textContent = "✅ 1년 가계부 버튼이 활성화되었습니다!";
+          goBtn1.disabled = false;
+          goBtn1.classList.add("active");
         }
-      }, 500);
+      }, 1000);
     });
 
-    // ✅ 링크 연결
+    // ✅ 2번 쿠팡 버튼 클릭 시
+    adLink2.addEventListener("click", () => {
+      let countdown = 5;
+      timerMsg2.textContent = `⏳ ${countdown}초 후 5년 가계부 버튼이 활성화됩니다.`;
+      const interval = setInterval(() => {
+        countdown--;
+        if (countdown > 0) {
+          timerMsg2.textContent = `⏳ ${countdown}초 후 5년 가계부 버튼이 활성화됩니다.`;
+        } else {
+          clearInterval(interval);
+          timerMsg2.textContent = "✅ 5년 가계부 버튼이 활성화되었습니다!";
+          goBtn2.disabled = false;
+          goBtn2.classList.add("active");
+        }
+      }, 1000);
+    });
+
+    // ✅ 구글시트 링크 연결
     goBtn1.addEventListener("click", () => {
       window.location.href = "https://docs.google.com/spreadsheets/d/1vsANf1UP_TJUDsJKnUEme-G88ggJf4yUJi_ttHPJkx0/edit?gid=741215701#gid=741215701";
     });
