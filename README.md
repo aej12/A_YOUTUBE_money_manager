@@ -1,6 +1,9 @@
+<!DOCTYPE html>
 <html lang="ko">
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A_YOUTUBE_money_manager</title>
   <style>
     body {
       font-family: 'Pretendard', sans-serif;
@@ -11,6 +14,7 @@
     }
     h1 {
       color: #2a4d9b;
+      margin-bottom: 10px;
     }
     .notice {
       font-size: 13px;
@@ -19,7 +23,7 @@
       padding: 10px;
       display: inline-block;
       box-shadow: 0 0 5px rgba(0,0,0,0.1);
-      margin-bottom: 10px;
+      margin-bottom: 15px;
     }
     .ad-section {
       margin-top: 20px;
@@ -115,7 +119,7 @@
       }, 1000);
     }
 
-    // 가계부 링크 연결 (필요 시 수정)
+    // ✅ 가계부 링크 연결 (필요 시 변경)
     document.getElementById('fileBtn1').onclick = () => {
       window.open('https://example.com/1year-budget', '_blank');
     };
