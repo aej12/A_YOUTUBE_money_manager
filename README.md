@@ -68,10 +68,7 @@
       color: #555;
       margin: 5px 0 15px;
     }
-  </style>
-</head>
-<body>
-  <h1>A YOUTUBE money manager</h1>
+
 
   <div class="notice">
     본 페이지는 <strong>쿠팡파트너스</strong> 활동의 일환으로,<br>
