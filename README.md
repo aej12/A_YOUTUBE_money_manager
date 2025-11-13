@@ -74,20 +74,19 @@
   </a>
   <div id="timerMsg1" class="timer"></div>
 
+  <!-- ✅ 공유자료 버튼 1 -->
+  <button id="goBtn1" class="btn go-button" disabled>📄 1년 가계부 보기</button>
+
   <!-- ✅ 쿠팡 광고 버튼 2 -->
   <a id="adLink2" href="https://link.coupang.com/a/cGwzg1" target="_blank" rel="noopener noreferrer">
     <button class="btn ad-button" type="button">✅ 쿠팡 인기상품 보기 (2번)</button>
   </a>
   <div id="timerMsg2" class="timer"></div>
 
-  <!-- ✅ 공유자료 버튼 1 -->
-  <button id="goBtn1" class="btn go-button" disabled>📄 1년 가계부 보기</button>
-
   <!-- ✅ 공유자료 버튼 2 -->
   <button id="goBtn2" class="btn go-button" disabled>📄 5년 가계부 보기</button>
 
   <script>
-    // 버튼 요소들
     const adLink1 = document.getElementById("adLink1");
     const adLink2 = document.getElementById("adLink2");
     const goBtn1 = document.getElementById("goBtn1");
@@ -95,7 +94,7 @@
     const timerMsg1 = document.getElementById("timerMsg1");
     const timerMsg2 = document.getElementById("timerMsg2");
 
-    // ✅ 1번 쿠팡 버튼 클릭 시
+    // ✅ 쿠팡 보기 1번 클릭 → 1년 가계부 활성화
     adLink1.addEventListener("click", () => {
       let countdown = 5;
       timerMsg1.textContent = `⏳ ${countdown}초 후 1년 가계부 버튼이 활성화됩니다.`;
@@ -112,7 +111,7 @@
       }, 1000);
     });
 
-    // ✅ 2번 쿠팡 버튼 클릭 시
+    // ✅ 쿠팡 보기 2번 클릭 → 5년 가계부 활성화
     adLink2.addEventListener("click", () => {
       let countdown = 5;
       timerMsg2.textContent = `⏳ ${countdown}초 후 5년 가계부 버튼이 활성화됩니다.`;
