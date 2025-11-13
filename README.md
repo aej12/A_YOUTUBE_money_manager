@@ -1,76 +1,81 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>A_YOUTUBE_money_manager</title>
   <style>
     body {
-      font-family: 'Pretendard', sans-serif;
+      font-family: "Pretendard", sans-serif;
       text-align: center;
       background-color: #f9f9f9;
       color: #333;
       padding: 20px;
+      line-height: 1.5;
     }
     h1 {
       color: #2a4d9b;
+      font-size: 26px;
       margin-bottom: 10px;
     }
     .notice {
-      font-size: 13px;
-      background-color: #fff;
-      border-radius: 8px;
-      padding: 10px;
+      background: #fff;
+      border-radius: 10px;
+      padding: 15px;
+      margin: 15px auto;
       display: inline-block;
-      box-shadow: 0 0 5px rgba(0,0,0,0.1);
-      margin-bottom: 15px;
+      font-size: 14px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     }
     .ad-section {
-      margin-top: 20px;
-      font-size: 18px;
       font-weight: bold;
+      font-size: 18px;
+      margin-top: 25px;
     }
     .btn {
       display: block;
-      width: 220px;
-      margin: 10px auto;
-      padding: 12px;
+      width: 240px;
+      margin: 12px auto;
+      padding: 13px 0;
       border: none;
       border-radius: 8px;
       font-size: 16px;
       cursor: pointer;
-      transition: 0.3s;
+      transition: all 0.3s ease;
     }
     .btn:disabled {
-      background-color: #aaa;
+      opacity: 0.6;
       cursor: not-allowed;
     }
     .btn-coupang {
       background-color: #007bff;
-      color: #fff;
+      color: white;
     }
     .btn-coupang:hover {
-      background-color: #0062cc;
+      background-color: #005fcc;
     }
     .btn-file {
       background-color: #28a745;
-      color: #fff;
+      color: white;
     }
     .btn-file:hover {
-      background-color: #218838;
-    }
-    .group {
-      margin: 25px 0;
+      background-color: #1f7a36;
     }
     .divider {
       margin: 30px auto;
       width: 60%;
       border-top: 2px dashed #ccc;
     }
+    p.countdown {
+      font-size: 14px;
+      color: #555;
+      margin: 5px 0 15px;
+    }
   </style>
 </head>
 <body>
   <h1>A YOUTUBE money manager</h1>
+
   <div class="notice">
     본 페이지는 <strong>쿠팡파트너스</strong> 활동의 일환으로,<br>
     해당 링크를 통해 구매 시 일정액의 수수료를 제공받을 수 있습니다.<br>
@@ -80,51 +85,56 @@
   <div class="ad-section">📢 광고를 먼저 봐주세요!</div>
   <p>쿠팡 광고를 클릭하면 5초 후 가계부 자료가 열립니다.</p>
 
-  <!-- ✅ 쿠팡 버튼 그룹 -->
-  <div class="group">
-    <button id="adBtn1" class="btn btn-coupang" onclick="activateFileBtn(1)">
-      ✅ 쿠팡 인기상품 보기 (1번)
-    </button>
-    <p id="countdown1"></p>
-
-    <button id="adBtn2" class="btn btn-coupang" onclick="activateFileBtn(2)">
-      ✅ 쿠팡 인기상품 보기 (2번)
-    </button>
-    <p id="countdown2"></p>
-  </div>
+  <!-- ✅ 쿠팡 1 + 1년 가계부 -->
+  <button id="adBtn1" class="btn btn-coupang">✅ 쿠팡 인기상품 보기 (1번)</button>
+  <p id="countdown1" class="countdown"></p>
+  <button id="fileBtn1" class="btn btn-file" disabled>📄 1년 가계부 보기</button>
 
   <div class="divider"></div>
 
-  <!-- ✅ 가계부 버튼 그룹 -->
-  <div class="group">
-    <button id="fileBtn1" class="btn btn-file" disabled>📄 1년 가계부 보기</button>
-    <button id="fileBtn2" class="btn btn-file" disabled>📄 5년 가계부 보기</button>
-  </div>
+  <!-- ✅ 쿠팡 2 + 5년 가계부 -->
+  <button id="adBtn2" class="btn btn-coupang">✅ 쿠팡 인기상품 보기 (2번)</button>
+  <p id="countdown2" class="countdown"></p>
+  <button id="fileBtn2" class="btn btn-file" disabled>📄 5년 가계부 보기</button>
 
   <script>
-    function activateFileBtn(num) {
-      const countdownEl = document.getElementById(`countdown${num}`);
-      const fileBtn = document.getElementById(`fileBtn${num}`);
-      let timeLeft = 5;
+    function startCountdown(adNum, coupangUrl, fileBtnId, countdownId) {
+      const countdown = document.getElementById(countdownId);
+      const fileBtn = document.getElementById(fileBtnId);
+      let seconds = 5;
 
-      countdownEl.innerText = `⏳ ${timeLeft}초 후 버튼이 활성화됩니다...`;
+      // 쿠팡 링크 열기 (모바일에서도 새창 인식되도록 window.open 사용)
+      window.open(coupangUrl, "_blank");
+
+      countdown.textContent = `⏳ ${seconds}초 후 버튼이 활성화됩니다...`;
+
       const timer = setInterval(() => {
-        timeLeft--;
-        countdownEl.innerText = `⏳ ${timeLeft}초 후 버튼이 활성화됩니다...`;
-        if (timeLeft <= 0) {
+        seconds--;
+        countdown.textContent = `⏳ ${seconds}초 후 버튼이 활성화됩니다...`;
+
+        if (seconds <= 0) {
           clearInterval(timer);
-          countdownEl.innerText = `✅ ${num === 1 ? "1년" : "5년"} 가계부 버튼이 활성화되었습니다!`;
+          countdown.textContent = `✅ 버튼이 활성화되었습니다!`;
           fileBtn.disabled = false;
         }
       }, 1000);
     }
 
-    // ✅ 가계부 링크 연결 (필요 시 변경)
-    document.getElementById('fileBtn1').onclick = () => {
-      window.open('https://example.com/1year-budget', '_blank');
+    // ✅ 버튼 이벤트 연결
+    document.getElementById("adBtn1").addEventListener("click", () => {
+      startCountdown(1, "https://link.coupang.com/a/XXXXX", "fileBtn1", "countdown1");
+    });
+
+    document.getElementById("adBtn2").addEventListener("click", () => {
+      startCountdown(2, "https://link.coupang.com/a/YYYYY", "fileBtn2", "countdown2");
+    });
+
+    // ✅ 가계부 링크 연결
+    document.getElementById("fileBtn1").onclick = () => {
+      window.open("https://example.com/1year-budget", "_blank");
     };
-    document.getElementById('fileBtn2').onclick = () => {
-      window.open('https://example.com/5year-budget', '_blank');
+    document.getElementById("fileBtn2").onclick = () => {
+      window.open("https://example.com/5year-budget", "_blank");
     };
   </script>
 </body>
