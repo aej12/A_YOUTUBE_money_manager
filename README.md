@@ -1,6 +1,9 @@
 
+<html lang="ko">
+<head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <style>
     body {
       font-family: "Pretendard", sans-serif;
@@ -68,6 +71,9 @@
       color: #555;
       margin: 5px 0 15px;
     }
+  </style>
+</head>
+<body>
 
 
   <div class="notice">
@@ -132,4 +138,4 @@
     };
   </script>
 </body>
-
+</html>
