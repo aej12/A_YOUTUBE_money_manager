@@ -2,7 +2,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>A_YOUTUBE_money_manager</title>
   <style>
     body {
       font-family: 'Pretendard', sans-serif;
