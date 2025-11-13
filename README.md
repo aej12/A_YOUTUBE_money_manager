@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
@@ -122,19 +121,19 @@
 
     // ✅ 버튼 이벤트 연결
     document.getElementById("adBtn1").addEventListener("click", () => {
-      startCountdown(1, "https://link.coupang.com/a/XXXXX", "fileBtn1", "countdown1");
+      startCountdown(1, "https://www.coupang.com/np/goldbox", "fileBtn1", "countdown1");
     });
 
     document.getElementById("adBtn2").addEventListener("click", () => {
-      startCountdown(2, "https://link.coupang.com/a/YYYYY", "fileBtn2", "countdown2");
+      startCountdown(2, "https://www.coupang.com/np/goldbox", "fileBtn2", "countdown2");
     });
 
     // ✅ 가계부 링크 연결
     document.getElementById("fileBtn1").onclick = () => {
-      window.open("https://example.com/1year-budget", "_blank");
+      window.open("https://docs.google.com/spreadsheets/d/1vsANf1UP_TJUDsJKnUEme-G88ggJf4yUJi_ttHPJkx0/edit?gid=741215701#gid=741215701", "_blank");
     };
     document.getElementById("fileBtn2").onclick = () => {
-      window.open("https://example.com/5year-budget", "_blank");
+      window.open("https://docs.google.com/spreadsheets/d/18NJ6G2lvuQ1xUCHTQ8vBaqtRY20LEk496am42yybhqw/edit?gid=0#gid=0", "_blank");
     };
   </script>
 </body>
