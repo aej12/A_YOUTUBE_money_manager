@@ -1,142 +1,129 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>A_YOUTUBE_money_manager</title>
   <style>
     body {
-      font-family: sans-serif;
+      font-family: 'Pretendard', sans-serif;
       text-align: center;
-      padding-top: 60px;
-      background-color: #f9fafc;
+      background-color: #f9f9f9;
+      color: #333;
+      padding: 20px;
     }
-
+    h1 {
+      color: #2a4d9b;
+    }
+    .notice {
+      font-size: 13px;
+      background-color: #fff;
+      border-radius: 8px;
+      padding: 10px;
+      display: inline-block;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+      margin-bottom: 10px;
+    }
+    .ad-section {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
     .btn {
       display: block;
-      width: 260px;
-      padding: 15px;
-      font-size: 18px;
+      width: 220px;
+      margin: 10px auto;
+      padding: 12px;
       border: none;
       border-radius: 8px;
+      font-size: 16px;
       cursor: pointer;
-      margin: 15px auto;
-      transition: all 0.3s ease;
+      transition: 0.3s;
     }
-
-    .ad-button {
-      background-color: #007aff;
-      color: white;
+    .btn:disabled {
+      background-color: #aaa;
+      cursor: not-allowed;
     }
-
-    .go-button {
-      background-color: gray;
-      color: white;
+    .btn-coupang {
+      background-color: #007bff;
+      color: #fff;
     }
-
-    .go-button.active {
+    .btn-coupang:hover {
+      background-color: #0062cc;
+    }
+    .btn-file {
       background-color: #28a745;
+      color: #fff;
     }
-
-    .disclosure {
-      font-size: 14px;
-      color: #555;
-      background-color: #f9f9f9;
-      border: 1px solid #eee;
-      border-radius: 8px;
-      padding: 12px;
-      width: fit-content;
-      margin: 0 auto 40px auto;
-      line-height: 1.5;
+    .btn-file:hover {
+      background-color: #218838;
     }
-
-    .timer {
-      font-size: 15px;
-      color: #666;
-      margin-top: -5px;
-      height: 20px;
+    .group {
+      margin: 25px 0;
+    }
+    .divider {
+      margin: 30px auto;
+      width: 60%;
+      border-top: 2px dashed #ccc;
     }
   </style>
 </head>
 <body>
-
-  <!-- ✅ 공정위 문구 -->
-  <div class="disclosure">
-    본 페이지는 <strong>쿠팡파트너스 활동</strong>의 일환으로,<br>
-    해당 링크를 통해 구매 시 <strong>일정액의 수수료를 제공받을 수 있습니다.</strong><br>
-    이 내용은 <strong>공정거래위원회 ‘추천·보증 등에 관한 표시·광고 지침’</strong>을 준수합니다.
+  <h1>A YOUTUBE money manager</h1>
+  <div class="notice">
+    본 페이지는 <strong>쿠팡파트너스</strong> 활동의 일환으로,<br>
+    해당 링크를 통해 구매 시 일정액의 수수료를 제공받을 수 있습니다.<br>
+    이 내용은 공정거래위원회의 ‘추천·보증 등에 관한 표시·광고 지침’을 준수합니다.
   </div>
 
-  <h2>📢 광고를 먼저 봐주세요!</h2>
-  <p>쿠팡 광고를 클릭하면 5초 후에 가계부 자료가 열립니다.</p>
+  <div class="ad-section">📢 광고를 먼저 봐주세요!</div>
+  <p>쿠팡 광고를 클릭하면 5초 후 가계부 자료가 열립니다.</p>
 
-  <!-- ✅ 쿠팡 광고 버튼 1 -->
-  <a id="adLink1" href="https://link.coupang.com/a/cGwzg1" target="_blank" rel="noopener noreferrer">
-    <button class="btn ad-button" type="button">✅ 쿠팡 인기상품 보기 (1번)</button>
-  </a>
-  <div id="timerMsg1" class="timer"></div>
+  <!-- ✅ 쿠팡 버튼 그룹 -->
+  <div class="group">
+    <button id="adBtn1" class="btn btn-coupang" onclick="activateFileBtn(1)">
+      ✅ 쿠팡 인기상품 보기 (1번)
+    </button>
+    <p id="countdown1"></p>
 
-  <!-- ✅ 공유자료 버튼 1 -->
-  <button id="goBtn1" class="btn go-button" disabled>📄 1년 가계부 보기</button>
+    <button id="adBtn2" class="btn btn-coupang" onclick="activateFileBtn(2)">
+      ✅ 쿠팡 인기상품 보기 (2번)
+    </button>
+    <p id="countdown2"></p>
+  </div>
 
-  <!-- ✅ 쿠팡 광고 버튼 2 -->
-  <a id="adLink2" href="https://link.coupang.com/a/cGwzg1" target="_blank" rel="noopener noreferrer">
-    <button class="btn ad-button" type="button">✅ 쿠팡 인기상품 보기 (2번)</button>
-  </a>
-  <div id="timerMsg2" class="timer"></div>
+  <div class="divider"></div>
 
-  <!-- ✅ 공유자료 버튼 2 -->
-  <button id="goBtn2" class="btn go-button" disabled>📄 5년 가계부 보기</button>
+  <!-- ✅ 가계부 버튼 그룹 -->
+  <div class="group">
+    <button id="fileBtn1" class="btn btn-file" disabled>📄 1년 가계부 보기</button>
+    <button id="fileBtn2" class="btn btn-file" disabled>📄 5년 가계부 보기</button>
+  </div>
 
   <script>
-    const adLink1 = document.getElementById("adLink1");
-    const adLink2 = document.getElementById("adLink2");
-    const goBtn1 = document.getElementById("goBtn1");
-    const goBtn2 = document.getElementById("goBtn2");
-    const timerMsg1 = document.getElementById("timerMsg1");
-    const timerMsg2 = document.getElementById("timerMsg2");
+    function activateFileBtn(num) {
+      const countdownEl = document.getElementById(`countdown${num}`);
+      const fileBtn = document.getElementById(`fileBtn${num}`);
+      let timeLeft = 5;
 
-    // ✅ 쿠팡 보기 1번 클릭 → 1년 가계부 활성화
-    adLink1.addEventListener("click", () => {
-      let countdown = 5;
-      timerMsg1.textContent = `⏳ ${countdown}초 후 1년 가계부 버튼이 활성화됩니다.`;
-      const interval = setInterval(() => {
-        countdown--;
-        if (countdown > 0) {
-          timerMsg1.textContent = `⏳ ${countdown}초 후 1년 가계부 버튼이 활성화됩니다.`;
-        } else {
-          clearInterval(interval);
-          timerMsg1.textContent = "✅ 1년 가계부 버튼이 활성화되었습니다!";
-          goBtn1.disabled = false;
-          goBtn1.classList.add("active");
+      countdownEl.innerText = `⏳ ${timeLeft}초 후 버튼이 활성화됩니다...`;
+      const timer = setInterval(() => {
+        timeLeft--;
+        countdownEl.innerText = `⏳ ${timeLeft}초 후 버튼이 활성화됩니다...`;
+        if (timeLeft <= 0) {
+          clearInterval(timer);
+          countdownEl.innerText = `✅ ${num === 1 ? "1년" : "5년"} 가계부 버튼이 활성화되었습니다!`;
+          fileBtn.disabled = false;
         }
       }, 1000);
-    });
+    }
 
-    // ✅ 쿠팡 보기 2번 클릭 → 5년 가계부 활성화
-    adLink2.addEventListener("click", () => {
-      let countdown = 5;
-      timerMsg2.textContent = `⏳ ${countdown}초 후 5년 가계부 버튼이 활성화됩니다.`;
-      const interval = setInterval(() => {
-        countdown--;
-        if (countdown > 0) {
-          timerMsg2.textContent = `⏳ ${countdown}초 후 5년 가계부 버튼이 활성화됩니다.`;
-        } else {
-          clearInterval(interval);
-          timerMsg2.textContent = "✅ 5년 가계부 버튼이 활성화되었습니다!";
-          goBtn2.disabled = false;
-          goBtn2.classList.add("active");
-        }
-      }, 1000);
-    });
-
-    // ✅ 구글시트 링크 연결
-    goBtn1.addEventListener("click", () => {
-      window.location.href = "https://docs.google.com/spreadsheets/d/1vsANf1UP_TJUDsJKnUEme-G88ggJf4yUJi_ttHPJkx0/edit?gid=741215701#gid=741215701";
-    });
-
-    goBtn2.addEventListener("click", () => {
-      window.location.href = "https://docs.google.com/spreadsheets/d/18NJ6G2lvuQ1xUCHTQ8vBaqtRY20LEk496am42yybhqw/edit?gid=0#gid=0";
-    });
+    // 가계부 링크 연결 (필요 시 수정)
+    document.getElementById('fileBtn1').onclick = () => {
+      window.open('https://example.com/1year-budget', '_blank');
+    };
+    document.getElementById('fileBtn2').onclick = () => {
+      window.open('https://example.com/5year-budget', '_blank');
+    };
   </script>
-
 </body>
 </html>
